@@ -29,7 +29,7 @@ import com.fronchak.ecommercestorage.exceptions.ResourceNotFoundException;
 import com.fronchak.ecommercestorage.mappers.SupplierMapper;
 import com.fronchak.ecommercestorage.repositories.SupplierRepository;
 import com.fronchak.ecommercestorage.test.factories.SupplierMocksFactory;
-import com.fronchak.ecommercestorage.test.util.CustomAsserts;
+import com.fronchak.ecommercestorage.test.util.SupplierCustomAsserts;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -38,7 +38,6 @@ public class SupplierServiceTest {
 
 	private Long VALID_ID = 1L;
 	private Long INVALID_ID = 2L;
-	private Long DEPENDENT_ID = 3L;
 	
 	private Supplier entity;
 	private List<Supplier> entityList;
@@ -82,7 +81,7 @@ public class SupplierServiceTest {
 	public void findByIdShouldReturnSupplierOutputDTOWhenIdExists() {
 		SupplierOutputDTO result = service.findById(VALID_ID);
 		
-		CustomAsserts.assertSupplierOutputDTO(result);
+		SupplierCustomAsserts.assertSupplierOutputDTO(result);
 		verify(repository, times(1)).findById(VALID_ID);
 		verify(mapper, times(1)).convertSupplierEntityToSupplieroutputDTO(entity);
 	}
@@ -96,7 +95,7 @@ public class SupplierServiceTest {
 	public void findAllShouldReturnSupplierOutputDTOList() {
 		List<SupplierOutputDTO> resultList = service.findAll();
 		
-		CustomAsserts.assertSupplierOutputDTOList(resultList);
+		SupplierCustomAsserts.assertSupplierOutputDTOList(resultList);
 	}
 	
 	@Test
@@ -104,7 +103,7 @@ public class SupplierServiceTest {
 		ArgumentCaptor<Supplier> argumentCaption = ArgumentCaptor.forClass(Supplier.class);
 		SupplierOutputDTO result = service.save(insertDTO);
 		
-		CustomAsserts.assertSupplierOutputDTO(result);
+		SupplierCustomAsserts.assertSupplierOutputDTO(result);
 		verify(repository).save(argumentCaption.capture());
 		Supplier entitySaved = argumentCaption.getValue();
 		assertNull(entitySaved.getId());
@@ -126,7 +125,7 @@ public class SupplierServiceTest {
 		assertEquals(0L, entityUpdated.getId());
 		assertEquals("Mock supplier name 0", entityUpdated.getName());
 		
-		CustomAsserts.assertSupplierOutputDTO(result);
+		SupplierCustomAsserts.assertSupplierOutputDTO(result);
 	}
 	
 	@Test

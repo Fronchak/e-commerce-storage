@@ -6,7 +6,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.fronchak.ecommercestorage.entities.Supplier;
 import com.fronchak.ecommercestorage.test.factories.SupplierMocksFactory;
-import com.fronchak.ecommercestorage.test.util.CustomAsserts;
+import com.fronchak.ecommercestorage.test.util.SupplierCustomAsserts;
 
 @ExtendWith(SpringExtension.class)
 public class SupplierOutputDTOTest {
@@ -15,6 +15,6 @@ public class SupplierOutputDTOTest {
 	public void constructorWithSupplierEntityShouldCreateCorrectlyOutputDTO() {
 		Supplier entity = SupplierMocksFactory.mockSupplierEntity();
 		SupplierOutputDTO result = new SupplierOutputDTO(entity);
-		CustomAsserts.assertSupplierOutputDTO(result);
+		SupplierCustomAsserts.assertSupplierOutputDTO(result);
 	}
 }

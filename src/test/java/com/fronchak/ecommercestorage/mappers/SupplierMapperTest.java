@@ -15,7 +15,7 @@ import com.fronchak.ecommercestorage.dtos.supplier.SupplierOutputDTO;
 import com.fronchak.ecommercestorage.dtos.supplier.SupplierUpdateDTO;
 import com.fronchak.ecommercestorage.entities.Supplier;
 import com.fronchak.ecommercestorage.test.factories.SupplierMocksFactory;
-import com.fronchak.ecommercestorage.test.util.CustomAsserts;
+import com.fronchak.ecommercestorage.test.util.SupplierCustomAsserts;
 
 @ExtendWith(SpringExtension.class)
 public class SupplierMapperTest {
@@ -33,7 +33,7 @@ public class SupplierMapperTest {
 		
 		SupplierOutputDTO result = mapper.convertSupplierEntityToSupplieroutputDTO(entity);
 		
-		CustomAsserts.assertSupplierOutputDTO(result);
+		SupplierCustomAsserts.assertSupplierOutputDTO(result);
 	}
 	
 	@Test
@@ -42,7 +42,7 @@ public class SupplierMapperTest {
 		
 		List<SupplierOutputDTO> resultList = mapper.convertSupplierEntityListToSupplierOutputDTOList(entityList);
 		
-		CustomAsserts.assertSupplierOutputDTOList(resultList);
+		SupplierCustomAsserts.assertSupplierOutputDTOList(resultList);
 	}
 	
 	@Test 

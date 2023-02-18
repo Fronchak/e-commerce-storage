@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.fronchak.ecommercestorage.dtos.supplier.SupplierOutputDTO;
 
-public class CustomAsserts {
+public class SupplierCustomAsserts {
 
 	public static void assertSupplierOutputDTO(SupplierOutputDTO result) {
 		assertEquals(0L, result.getId());

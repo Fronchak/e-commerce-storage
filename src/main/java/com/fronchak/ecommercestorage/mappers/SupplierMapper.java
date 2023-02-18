@@ -18,7 +18,7 @@ public class SupplierMapper {
 	
 	public List<SupplierOutputDTO> convertSupplierEntityListToSupplierOutputDTOList(List<Supplier> list) {
 		return list.stream()
-				.map((supplier) -> new SupplierOutputDTO(supplier)) 
+				.map((supplier) -> convertSupplierEntityToSupplieroutputDTO(supplier)) 
 				.collect(Collectors.toList());
 	}
 	

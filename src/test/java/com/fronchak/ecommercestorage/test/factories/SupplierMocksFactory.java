@@ -56,15 +56,15 @@ public class SupplierMocksFactory {
 	}
 	
 	public static SupplierInsertDTO mockSupplierInsertDTO() {
-		return (SupplierInsertDTO) mockSupplierInputDTO(new SupplierInsertDTO(), 0);
+		return (SupplierInsertDTO) mockSupplierInputDTO(new SupplierInsertDTO());
 	}	
 	
-	private static SupplierInputDTO mockSupplierInputDTO(SupplierInputDTO mock, int i) {
-		mock.setName(mockSupplierName(i));
+	private static SupplierInputDTO mockSupplierInputDTO(SupplierInputDTO mock) {
+		mock.setName(mockSupplierName(0));
 		return mock;
 	}
 	
 	public static SupplierUpdateDTO mockSupplierUpdateDTO() {
-		return (SupplierUpdateDTO) mockSupplierInputDTO(new SupplierUpdateDTO(), 0);
+		return (SupplierUpdateDTO) mockSupplierInputDTO(new SupplierUpdateDTO());
 	}
 }
