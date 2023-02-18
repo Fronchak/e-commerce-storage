@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -103,11 +104,15 @@ public class SupplierServiceTest {
 		ArgumentCaptor<Supplier> argumentCaption = ArgumentCaptor.forClass(Supplier.class);
 		SupplierOutputDTO result = service.save(insertDTO);
 		
-		SupplierCustomAsserts.assertSupplierOutputDTO(result);
 		verify(repository).save(argumentCaption.capture());
 		Supplier entitySaved = argumentCaption.getValue();
 		assertNull(entitySaved.getId());
 		assertNull(entitySaved.getName());
+		
+		verify(mapper, times(1)).copySupplierDTOToSupplierEntity(entitySaved, insertDTO);
+		verify(mapper, times(1)).convertSupplierEntityToSupplieroutputDTO(entity);
+		
+		SupplierCustomAsserts.assertSupplierOutputDTO(result);
 	}
 	
 	@Test
@@ -115,15 +120,15 @@ public class SupplierServiceTest {
 		ArgumentCaptor<Supplier> argumentCaption = ArgumentCaptor.forClass(Supplier.class);
 		SupplierOutputDTO result = service.update(updateDTO, VALID_ID);
 		
-		verify(repository, times(1)).getReferenceById(VALID_ID);
-		verify(mapper, times(1)).copySupplierDTOToSupplierEntity(entity, updateDTO);
-		verify(repository).save(entity);
-		verify(mapper, times(1)).convertSupplierEntityToSupplieroutputDTO(entity);
 		verify(repository).save(argumentCaption.capture());
-		
 		Supplier entityUpdated = argumentCaption.getValue();
 		assertEquals(0L, entityUpdated.getId());
 		assertEquals("Mock supplier name 0", entityUpdated.getName());
+		
+		verify(repository, times(1)).getReferenceById(VALID_ID);
+		verify(mapper, times(1)).copySupplierDTOToSupplierEntity(entityUpdated, updateDTO);
+		verify(repository).save(entity);
+		verify(mapper, times(1)).convertSupplierEntityToSupplieroutputDTO(entity);
 		
 		SupplierCustomAsserts.assertSupplierOutputDTO(result);
 	}
@@ -131,5 +136,8 @@ public class SupplierServiceTest {
 	@Test
 	public void updateShouldReturnResourceNotFoundExceptionWhenIdDoesNotExist() {
 		assertThrows(ResourceNotFoundException.class, () -> service.update(updateDTO, INVALID_ID));
+		
+		verify(repository, times(1)).getReferenceById(INVALID_ID);
+		verify(repository, never()).save(any());
 	}
 }

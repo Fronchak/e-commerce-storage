@@ -41,6 +41,7 @@ public class UserMocksFactory {
 	
 	public static UserOutputDTO mockUserOutputDTO(int i) {
 		UserOutputDTO mock = new UserOutputDTO();
+		mock.setId(mockUserId(i));
 		mock.setUsername(mockUserUsername(i));
 		return mock;
 	}
