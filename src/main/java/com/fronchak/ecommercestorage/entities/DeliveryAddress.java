@@ -24,6 +24,10 @@ public class DeliveryAddress implements Serializable {
 	private String number;
 	private String cep;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_user")
+	private User user;
+	
 	public Long getId() {
 		return id;
 	}
@@ -54,6 +58,14 @@ public class DeliveryAddress implements Serializable {
 	
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
