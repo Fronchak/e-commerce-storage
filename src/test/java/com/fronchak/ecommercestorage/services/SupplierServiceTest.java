@@ -57,8 +57,8 @@ public class SupplierServiceTest {
 	
 	@BeforeEach
 	void setUp() {
-		entity = SupplierMocksFactory.mockSupplierEntity();
-		entityList = SupplierMocksFactory.mockSupplierEntityList();
+		entity = SupplierMocksFactory.mockSupplier();
+		entityList = SupplierMocksFactory.mockSupplierList();
 		
 		SupplierOutputDTO outputDTO = SupplierMocksFactory.mockSupplierOutputDTO();
 		List<SupplierOutputDTO> outputDTOList = SupplierMocksFactory.mockSupplierOutputDTOList();

@@ -29,7 +29,7 @@ public class SupplierMapperTest {
 	
 	@Test
 	public void convertSupplierEntityToSupplierOutoutDTOShouldConvertCorrectly() {
-		Supplier entity = SupplierMocksFactory.mockSupplierEntity();
+		Supplier entity = SupplierMocksFactory.mockSupplier();
 		
 		SupplierOutputDTO result = mapper.convertSupplierEntityToSupplieroutputDTO(entity);
 		
@@ -38,7 +38,7 @@ public class SupplierMapperTest {
 	
 	@Test
 	public void convertSupplierEntityListToSupplierOutputDTOShouldConvertCorrectly() {
-		List<Supplier> entityList = SupplierMocksFactory.mockSupplierEntityList();
+		List<Supplier> entityList = SupplierMocksFactory.mockSupplierList();
 		
 		List<SupplierOutputDTO> resultList = mapper.convertSupplierEntityListToSupplierOutputDTOList(entityList);
 		

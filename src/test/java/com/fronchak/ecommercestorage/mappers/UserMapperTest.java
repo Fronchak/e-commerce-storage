@@ -29,18 +29,18 @@ public class UserMapperTest {
 	
 	@Test
 	public void convertUserEntityToUserOutputDTOShouldConvertCorrectly() {
-		User entity = UserMocksFactory.mockEntityUser();
+		User entity = UserMocksFactory.mockUser();
 		
-		UserOutputDTO result = mapper.convertUserEntityToUserOutputDTO(entity);
+		UserOutputDTO result = mapper.convertUserToUserOutputDTO(entity);
 		
 		UserCustomAsserts.assertUserOutputDTO(result);
 	}
 	
 	@Test
 	public void convertUserEntityListToUserOutputDTOListShouldConvertCorrectly() {
-		List<User> list = UserMocksFactory.mockUserEntityList();
+		List<User> list = UserMocksFactory.mockUserList();
 		
-		List<UserOutputDTO> resultList = mapper.convertUserEntityListToUserOutputDTOList(list);
+		List<UserOutputDTO> resultList = mapper.convertUserListToUserOutputDTOList(list);
 		
 		UserCustomAsserts.assertUserOutputDTOList(resultList);
 	}
@@ -50,7 +50,7 @@ public class UserMapperTest {
 		UserInsertDTO dto = UserMocksFactory.mockUserInsertDTO();
 		User entity = new User();
 		
-		mapper.copyDTOToEntity(entity, dto);
+		mapper.copyUserInputDTOToUser(entity, dto);
 		
 		assertEquals("Mock user username 0", entity.getUsername());
 		assertEquals("Mock user password 0", entity.getPassword());
@@ -63,7 +63,7 @@ public class UserMapperTest {
 		User entity = new User();
 		entity.setId(1L);
 	
-		mapper.copyDTOToEntity(entity, dto);
+		mapper.copyUserInputDTOToUser(entity, dto);
 		
 		assertEquals("Mock user username 0", entity.getUsername());
 		assertEquals("Mock user password 0", entity.getPassword());

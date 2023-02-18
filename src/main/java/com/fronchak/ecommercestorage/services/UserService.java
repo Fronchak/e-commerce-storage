@@ -28,29 +28,29 @@ public class UserService {
 	public UserOutputDTO findById(Long id) {
 		User entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User", id.toString()));
-		return mapper.convertUserEntityToUserOutputDTO(entity);
+		return mapper.convertUserToUserOutputDTO(entity);
 	}
 	
 	public List<UserOutputDTO> findAll() {
 		List<User> entityList = repository.findAll();
-		return mapper.convertUserEntityListToUserOutputDTOList(entityList);
+		return mapper.convertUserListToUserOutputDTOList(entityList);
 	}
 	
 	@Transactional
 	public UserOutputDTO save(UserInsertDTO dto) {
 		User entity = new User();
-		mapper.copyDTOToEntity(entity, dto);
+		mapper.copyUserInputDTOToUser(entity, dto);
 		entity = repository.save(entity);
-		return mapper.convertUserEntityToUserOutputDTO(entity);
+		return mapper.convertUserToUserOutputDTO(entity);
 	}
 	
 	@Transactional
 	public UserOutputDTO update(UserUpdateDTO dto, Long id) {
 		try {
 			User entity = repository.getReferenceById(id);
-			mapper.copyDTOToEntity(entity, dto);
+			mapper.copyUserInputDTOToUser(entity, dto);
 			entity = repository.save(entity);
-			return mapper.convertUserEntityToUserOutputDTO(entity);	
+			return mapper.convertUserToUserOutputDTO(entity);	
 		}
 		catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException("User", id.toString());

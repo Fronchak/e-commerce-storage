@@ -1,4 +1,4 @@
-package com.fronchak.ecommercestorage.dtos.supplier;
+package com.fronchak.ecommercestorage.dtos;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,7 +14,7 @@ public class UserOutputDTOTest {
 
 	@Test
 	public void constructorWithUserEntityShouldCreateCorrectlyUserOutputDTO() {
-		User entity = UserMocksFactory.mockEntityUser();
+		User entity = UserMocksFactory.mockUser();
 		UserOutputDTO result = new UserOutputDTO(entity);
 		UserCustomAsserts.assertUserOutputDTO(result);
 	}

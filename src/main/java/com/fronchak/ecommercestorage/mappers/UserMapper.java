@@ -12,17 +12,17 @@ import com.fronchak.ecommercestorage.entities.User;
 @Service
 public class UserMapper {
 
-	public UserOutputDTO convertUserEntityToUserOutputDTO(User entity) {
+	public UserOutputDTO convertUserToUserOutputDTO(User entity) {
 		return new UserOutputDTO(entity);
 	}
 	
-	public List<UserOutputDTO> convertUserEntityListToUserOutputDTOList(List<User> list) {
+	public List<UserOutputDTO> convertUserListToUserOutputDTOList(List<User> list) {
 		return list.stream()
-				.map((entity) -> convertUserEntityToUserOutputDTO(entity))
+				.map((entity) -> convertUserToUserOutputDTO(entity))
 				.collect(Collectors.toList());
 	}
 	
-	public void copyDTOToEntity(User entity, UserInputDTO dto) {
+	public void copyUserInputDTOToUser(User entity, UserInputDTO dto) {
 		entity.setUsername(dto.getUsername());
 		entity.setPassword(dto.getPassword());
 	}

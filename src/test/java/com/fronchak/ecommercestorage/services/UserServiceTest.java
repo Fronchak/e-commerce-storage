@@ -55,8 +55,8 @@ public class UserServiceTest {
 	
 	@BeforeEach
 	void setUp() {
-		entity = UserMocksFactory.mockEntityUser();
-		entityList = UserMocksFactory.mockUserEntityList();
+		entity = UserMocksFactory.mockUser();
+		entityList = UserMocksFactory.mockUserList();
 		
 		UserOutputDTO outputDTO = UserMocksFactory.mockUserOutputDTO();
 		List<UserOutputDTO> outputDTOList = UserMocksFactory.mockUserOutputDTOList();
@@ -68,9 +68,9 @@ public class UserServiceTest {
 		when(repository.getReferenceById(VALID_ID)).thenReturn(entity);
 		when(repository.getReferenceById(INVALID_ID)).thenThrow(EntityNotFoundException.class);
 		
-		when(mapper.convertUserEntityToUserOutputDTO(entity)).thenReturn(outputDTO);
-		when(mapper.convertUserEntityListToUserOutputDTOList(entityList)).thenReturn(outputDTOList);
-		doNothing().when(mapper).copyDTOToEntity(any(User.class), any(UserInputDTO.class));
+		when(mapper.convertUserToUserOutputDTO(entity)).thenReturn(outputDTO);
+		when(mapper.convertUserListToUserOutputDTOList(entityList)).thenReturn(outputDTOList);
+		doNothing().when(mapper).copyUserInputDTOToUser(any(User.class), any(UserInputDTO.class));
 		
 	}
 	
@@ -79,7 +79,7 @@ public class UserServiceTest {
 		UserOutputDTO result = service.findById(VALID_ID);
 		
 		verify(repository, times(1)).findById(VALID_ID);
-		verify(mapper, times(1)).convertUserEntityToUserOutputDTO(entity);
+		verify(mapper, times(1)).convertUserToUserOutputDTO(entity);
 		UserCustomAsserts.assertUserOutputDTO(result);
 	}
 	
@@ -93,7 +93,7 @@ public class UserServiceTest {
 		List<UserOutputDTO> resultList = service.findAll();
 		
 		verify(repository, times(1)).findAll();
-		verify(mapper, times(1)).convertUserEntityListToUserOutputDTOList(entityList);
+		verify(mapper, times(1)).convertUserListToUserOutputDTOList(entityList);
 		UserCustomAsserts.assertUserOutputDTOList(resultList);
 	}
 	
@@ -108,10 +108,10 @@ public class UserServiceTest {
 		assertNull(userSaved.getUsername());
 		assertNull(userSaved.getPassword());
 		
-		verify(mapper, times(1)).copyDTOToEntity(userSaved, insertDTO);
+		verify(mapper, times(1)).copyUserInputDTOToUser(userSaved, insertDTO);
 		verify(repository).save(any(User.class));
 		
-		verify(mapper, times(1)).convertUserEntityToUserOutputDTO(entity);
+		verify(mapper, times(1)).convertUserToUserOutputDTO(entity);
 		UserCustomAsserts.assertUserOutputDTO(result);
 	}
 	
@@ -125,10 +125,10 @@ public class UserServiceTest {
 		UserCustomAsserts.assertUserEntity(entityUpdated);
 		
 		verify(repository, times(1)).getReferenceById(VALID_ID);
-		verify(mapper, times(1)).copyDTOToEntity(entityUpdated, insertDTO);
+		verify(mapper, times(1)).copyUserInputDTOToUser(entityUpdated, insertDTO);
 		verify(repository, times(1)).save(entity);
 
-		verify(mapper, times(1)).convertUserEntityToUserOutputDTO(entity);
+		verify(mapper, times(1)).convertUserToUserOutputDTO(entity);
 		UserCustomAsserts.assertUserOutputDTO(result);
 	}
 	

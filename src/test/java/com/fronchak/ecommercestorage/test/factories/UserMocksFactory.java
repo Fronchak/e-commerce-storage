@@ -11,27 +11,27 @@ import com.fronchak.ecommercestorage.entities.User;
 
 public class UserMocksFactory {
 
-	public static User mockEntityUser() {
-		return mockEntityUser(0);
+	public static User mockUser() {
+		return mockUser(0);
 	}
 	
-	public static User mockEntityUser(int i) {
+	public static User mockUser(int i) {
 		User mock = new User();
-		mock.setId(mockUserId(i));
-		mock.setUsername(mockUserUsername(i));
-		mock.setPassword(mockUserPassword(i));
+		mock.setId(mockId(i));
+		mock.setUsername(mockUsername(i));
+		mock.setPassword(mockPassword(i));
 		return mock;
 	}
 	
-	private static Long mockUserId(int i) {
+	private static Long mockId(int i) {
 		return i + 10L;
 	}
 	
-	private static String mockUserUsername(int i) {
+	private static String mockUsername(int i) {
 		return "Mock user username " + i;
 	}
 	
-	private static String mockUserPassword(int i) {
+	private static String mockPassword(int i) {
 		return "Mock user password " + i;
  	}
 	
@@ -41,15 +41,15 @@ public class UserMocksFactory {
 	
 	public static UserOutputDTO mockUserOutputDTO(int i) {
 		UserOutputDTO mock = new UserOutputDTO();
-		mock.setId(mockUserId(i));
-		mock.setUsername(mockUserUsername(i));
+		mock.setId(mockId(i));
+		mock.setUsername(mockUsername(i));
 		return mock;
 	}
 	
-	public static List<User> mockUserEntityList() {
+	public static List<User> mockUserList() {
 		List<User> list = new ArrayList<>();
-		list.add(mockEntityUser(0));
-		list.add(mockEntityUser(1));
+		list.add(mockUser(0));
+		list.add(mockUser(1));
 		return list;
 	}
 	
@@ -65,8 +65,8 @@ public class UserMocksFactory {
 	}
 	
 	private static UserInputDTO mockUserInputDTO(UserInputDTO mock) {
-		mock.setUsername(mockUserUsername(0));
-		mock.setPassword(mockUserPassword(0));
+		mock.setUsername(mockUsername(0));
+		mock.setPassword(mockPassword(0));
 		return mock;
 	}
 	
