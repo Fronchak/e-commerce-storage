@@ -6,7 +6,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.fronchak.ecommercestorage.dtos.delivery_address.DeliveryAddressOutputDTO;
 import com.fronchak.ecommercestorage.entities.DeliveryAddress;
-import com.fronchak.ecommercestorage.test.factories.DeliveryAddressMockFactory;
+import com.fronchak.ecommercestorage.test.factories.DeliveryAddressMocksFactory;
 import com.fronchak.ecommercestorage.test.util.DeliveryAddressCustomAsserts;
 
 @ExtendWith(SpringExtension.class)
@@ -14,7 +14,7 @@ public class DeliveryAddressOutputDTOTest {
 
 	@Test
 	public void constructorWithDeliveryAddressShouldCreateCorretlyDeliveryAddressOutputDTO() {
-		DeliveryAddress entity = DeliveryAddressMockFactory.mockDeliveryAddress();
+		DeliveryAddress entity = DeliveryAddressMocksFactory.mockDeliveryAddress();
 		
 		DeliveryAddressOutputDTO result = new DeliveryAddressOutputDTO(entity);
 		

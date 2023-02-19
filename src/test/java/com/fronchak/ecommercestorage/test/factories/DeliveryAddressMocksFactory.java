@@ -7,7 +7,7 @@ import com.fronchak.ecommercestorage.dtos.delivery_address.DeliveryAddressInputD
 import com.fronchak.ecommercestorage.dtos.delivery_address.DeliveryAddressOutputDTO;
 import com.fronchak.ecommercestorage.entities.DeliveryAddress;
 
-public class DeliveryAddressMockFactory {
+public class DeliveryAddressMocksFactory {
 
 	public static DeliveryAddress mockDeliveryAddress() {
 		return mockDeliveryAddress(0);

@@ -13,7 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.fronchak.ecommercestorage.dtos.delivery_address.DeliveryAddressInputDTO;
 import com.fronchak.ecommercestorage.dtos.delivery_address.DeliveryAddressOutputDTO;
 import com.fronchak.ecommercestorage.entities.DeliveryAddress;
-import com.fronchak.ecommercestorage.test.factories.DeliveryAddressMockFactory;
+import com.fronchak.ecommercestorage.test.factories.DeliveryAddressMocksFactory;
 import com.fronchak.ecommercestorage.test.util.DeliveryAddressCustomAsserts;
 
 @ExtendWith(SpringExtension.class)
@@ -28,7 +28,7 @@ public class DeliveryAddressMapperTest {
 	
 	@Test
 	public void convertDeliveryAddressToDeliveryAddressOutputDTOShouldConvertCorrectly() {
-		DeliveryAddress entity = DeliveryAddressMockFactory.mockDeliveryAddress();
+		DeliveryAddress entity = DeliveryAddressMocksFactory.mockDeliveryAddress();
 		
 		DeliveryAddressOutputDTO result = mapper.convertDeliveryAddressToDeliveryAddressOutputDTO(entity);
 		
@@ -37,7 +37,7 @@ public class DeliveryAddressMapperTest {
 	
 	@Test
 	public void convertDeliveryAddressListToDeliveryAddressOutputDTOListShouldConvertCorrectly() {
-		List<DeliveryAddress> list = DeliveryAddressMockFactory.mockDeliveryAddressList();
+		List<DeliveryAddress> list = DeliveryAddressMocksFactory.mockDeliveryAddressList();
 		
 		List<DeliveryAddressOutputDTO> resultList = mapper.convertDeliveryAddressListToDeliveryAddressOutputDTOList(list);
 		
@@ -46,7 +46,7 @@ public class DeliveryAddressMapperTest {
 	
 	@Test
 	public void copyDeliveryAddressInputDTOToDeliveryAddressShouldCopyValuesCorrectlyWhenInserting() {
-		DeliveryAddressInputDTO dto = DeliveryAddressMockFactory.mockDeliveryAddressInputDTO();
+		DeliveryAddressInputDTO dto = DeliveryAddressMocksFactory.mockDeliveryAddressInputDTO();
 		DeliveryAddress entity = new DeliveryAddress();
 		
 		mapper.copyDeliveryAddressInputDTOToDeliveryAddress(entity, dto);
@@ -57,7 +57,7 @@ public class DeliveryAddressMapperTest {
 	
 	@Test
 	public void copyDeliveryAddressInputDTOToDeliveryAddressShouldCopyValuesCorrectlyWhenUpdating() {
-		DeliveryAddressInputDTO dto = DeliveryAddressMockFactory.mockDeliveryAddressInputDTO();
+		DeliveryAddressInputDTO dto = DeliveryAddressMocksFactory.mockDeliveryAddressInputDTO();
 		DeliveryAddress entity = new DeliveryAddress();
 		entity.setId(1L);
 		

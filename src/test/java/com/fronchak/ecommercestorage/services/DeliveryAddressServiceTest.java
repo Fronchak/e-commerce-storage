@@ -29,7 +29,7 @@ import com.fronchak.ecommercestorage.exceptions.ResourceNotFoundException;
 import com.fronchak.ecommercestorage.mappers.DeliveryAddressMapper;
 import com.fronchak.ecommercestorage.repositories.DeliveryAddressRepository;
 import com.fronchak.ecommercestorage.repositories.UserRepository;
-import com.fronchak.ecommercestorage.test.factories.DeliveryAddressMockFactory;
+import com.fronchak.ecommercestorage.test.factories.DeliveryAddressMocksFactory;
 import com.fronchak.ecommercestorage.test.factories.UserMocksFactory;
 import com.fronchak.ecommercestorage.test.util.DeliveryAddressCustomAsserts;
 
@@ -38,9 +38,6 @@ import jakarta.persistence.EntityNotFoundException;
 @ExtendWith(SpringExtension.class)
 public class DeliveryAddressServiceTest {
 
-	private Long VALID_ID = 1L;
-	private Long INVALID_ID = 2L;
-	
 	private Long VALID_USER_ID = 10L;
 	private Long INVALID_USER_ID = 11L;
 	
@@ -64,12 +61,12 @@ public class DeliveryAddressServiceTest {
 	
 	@BeforeEach
 	void setUp() {
-		entity = DeliveryAddressMockFactory.mockDeliveryAddress();
-		entityList = DeliveryAddressMockFactory.mockDeliveryAddressList();
+		entity = DeliveryAddressMocksFactory.mockDeliveryAddress();
+		entityList = DeliveryAddressMocksFactory.mockDeliveryAddressList();
 		
-		DeliveryAddressOutputDTO outputDTO = DeliveryAddressMockFactory.mockDeliveryAddressOutputDTO();
-		List<DeliveryAddressOutputDTO> outputDTOList = DeliveryAddressMockFactory.mockDeliveryAddressOutputDTOList();
-		inputDTO = DeliveryAddressMockFactory.mockDeliveryAddressInputDTO();
+		DeliveryAddressOutputDTO outputDTO = DeliveryAddressMocksFactory.mockDeliveryAddressOutputDTO();
+		List<DeliveryAddressOutputDTO> outputDTOList = DeliveryAddressMocksFactory.mockDeliveryAddressOutputDTOList();
+		inputDTO = DeliveryAddressMocksFactory.mockDeliveryAddressInputDTO();
 		
 		user = UserMocksFactory.mockUser();
 		
