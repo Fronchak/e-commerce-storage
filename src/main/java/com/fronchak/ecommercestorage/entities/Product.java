@@ -3,6 +3,8 @@ package com.fronchak.ecommercestorage.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fronchak.ecommercestorage.exceptions.NotEnoughInStockException;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +24,10 @@ public class Product implements Serializable {
 	private String description;
 	private Double price;
 	private Integer quantity;
+	
+	public Product() {
+		quantity = 0;
+	}
 	
 	public Long getId() {
 		return id;
@@ -77,5 +83,17 @@ public class Product implements Serializable {
 			return false;
 		Product other = (Product) obj;
 		return Objects.equals(id, other.id);
+	}
+	
+	public void sell(Integer sellQuantity) {
+		if(sellQuantity > quantity) {
+			throw new NotEnoughInStockException(
+					"Invalid sell quantity, there is only " + quantity + " unit(s) in stock for this product");
+		}
+		quantity -= sellQuantity;
+	}
+	
+	public void buy(Integer buyQuantity) {
+		quantity += buyQuantity;
 	}
 }
